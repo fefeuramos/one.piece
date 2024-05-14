@@ -1,23 +1,41 @@
-# one.piece
-if keyboard_check(vk_left)//direita
+#one.piece
+//andar
+move = -keyboard_check(vk_left)+keyboard_check(vk_right)
+
+hsp=move*spd
+
+if place_meeting(x+hsp,y,obj_wall)
 {
-   x-=1
+	while !place_meeting(x+sign(hsp),y,obj_wall)
+    {
+		x+=sign(hsp)
+	}
+  hsp=0
 }
-if keyboard_check(vk_right)// esquerda
+
+x+=hsp
+
+if place_meeting(x,y+vsp,obj_wall)
 {
-   x+=1
+	while !place_meeting(x,y+sign(vsp),obj_wall)
+    {
+		y+=sign(vsp)
+	}
+  vsp=0
 }
-if place_meeting(x,y+1,obj_wall)//tropeçar para
+
+y+=vsp
+
+if place_meeting(x,y+1,obj_wall)
 {
- vspeed = 0
- pulos = 3
+	pulos=1
 }
 else
 {
- vspeed += 0.3	
+	vsp+=grav
 }
-if keyboard_check_pressed(vk_space) && pulos>0 //pulo sem pulo infinito
+if keyboard_check_pressed(vk_space) && pulos>0	
 {
- vspeed -= 3
- pulos -=1
+		vsp=jspd
+		pulos-=1
 }
