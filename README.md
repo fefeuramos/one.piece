@@ -39,3 +39,10 @@ if keyboard_check_pressed(vk_space) && pulos>0
 		vsp=jspd
 		pulos-=1
 }
+
+hsp=0
+vsp=0
+spd=3
+grav=1
+jspd=-12
+pulos=1
